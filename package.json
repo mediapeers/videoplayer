@@ -1,0 +1,29 @@
+{
+  "name": "videoplayer",
+  "version": "0.0.1",
+  "description": "mpx videoplayer",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "yarn tsc && cp src/*.scss dist/"
+  },
+  "author": "johannes-kostas goetzinger <goetzinger@mediapeers.com>",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "chipmunk": "https://github.com/mediapeers/chipmunk.git#0bd712562b4c00742ae808ad6e347f8bed9574dd",
+    "@types/bluebird": "^3.5.26",
+    "platform": "^1.3.5",
+    "moment": "^2.18.1",
+    "crypto-js": "^3.1.9-1",
+    "react": "16.2.0",
+    "classnames": "^2.2.5",
+    "nanoid": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.15",
+    "@types/lodash": "^4.14.129",
+    "typescript": "^3.4.5"
+  }
+}
