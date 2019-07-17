@@ -1,10 +1,11 @@
 import {IChipmunk} from 'chipmunk'
+import {get} from 'lodash'
 
 interface PlayerConfig {
-  chipmunk(): IChipmunk
-  visitId(): string
   playerKey: string
   videoUrlSecret: string
+  chipmunk(): IChipmunk
+  visitId(): string
   googleAnalytics?(action: string, ...args): any
 }
 
@@ -21,13 +22,13 @@ class Config {
     return this.config && this.config.visitId()
   }
   public get googleAnalytics() {
-    return this.config && this.config.googleAnalytics
+    return get(this, 'config.googleAnalytics')
   }
   public get playerKey() {
-    return this.config && this.config.playerKey
+    return get(this, 'config.playerKey')
   }
   public get videoUrlSecret() {
-    return this.config && this.config.videoUrlSecret
+    return get(this, 'config.videoUrlSecret')
   }
 }
 

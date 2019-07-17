@@ -5,8 +5,8 @@ export interface IPlayerAnalyticsOpts {
   videoId: number
   playerId: string
   getCurrentTime?: Function
-  title?: string
-  parentTitle?: string
+  videoTitle?: string
+  videoParentTitle?: string
 }
 
 export class PlayerAnalytics {
@@ -46,15 +46,15 @@ export class PlayerAnalytics {
 
       if (config.googleAnalytics) {
         config.googleAnalytics('set', {
-          dimension1: this.opts.title,
-          dimension2: this.opts.parentTitle,
+          dimension1: this.opts.videoTitle,
+          dimension2: this.opts.videoParentTitle,
           dimension3: userId,
         })
 
         config.googleAnalytics('event', {
           category: 'video',
           action: 'play',
-          label: this.opts.title,
+          label: this.opts.videoTitle,
           nonInteraction: true,
         })
       }
@@ -74,8 +74,8 @@ export class PlayerAnalytics {
 
       if (config.googleAnalytics) {
         config.googleAnalytics('set', {
-          dimension1: this.opts.title,
-          dimension2: this.opts.parentTitle,
+          dimension1: this.opts.videoTitle,
+          dimension2: this.opts.videoParentTitle,
           dimension3: userId,
           metric1: 60,
         })
@@ -83,7 +83,7 @@ export class PlayerAnalytics {
         config.googleAnalytics('event', {
           category: 'video',
           action: 'playing',
-          label: `${this.opts.parentTitle}: ${this.opts.title}`,
+          label: `${this.opts.videoParentTitle}: ${this.opts.videoTitle}`,
           value: 60,
           nonInteraction: true,
         })
