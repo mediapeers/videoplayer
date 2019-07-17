@@ -23,7 +23,7 @@ export declare abstract class Player {
     pause(): void;
     readonly playerId: string;
     protected config(): {
-        key: string;
+        key: any;
         playback: {
             autoplay: boolean;
         };

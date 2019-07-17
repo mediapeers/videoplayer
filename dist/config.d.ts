@@ -1,9 +1,9 @@
 import { IChipmunk } from 'chipmunk';
 interface PlayerConfig {
-    chipmunk(): IChipmunk;
-    visitId(): string;
     playerKey: string;
     videoUrlSecret: string;
+    chipmunk(): IChipmunk;
+    visitId(): string;
     googleAnalytics?(action: string, ...args: any[]): any;
 }
 declare class Config {
@@ -11,9 +11,9 @@ declare class Config {
     configure(conf: PlayerConfig): void;
     readonly chipmunk: IChipmunk | null;
     readonly visitId: string | null;
-    readonly googleAnalytics: (action: string, ...args: any[]) => any;
-    readonly playerKey: string;
-    readonly videoUrlSecret: string;
+    readonly googleAnalytics: any;
+    readonly playerKey: any;
+    readonly videoUrlSecret: any;
 }
 declare const instance: Config;
 export = instance;

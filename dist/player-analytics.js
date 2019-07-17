@@ -30,14 +30,14 @@ class PlayerAnalytics {
             });
             if (config_1.default.googleAnalytics) {
                 config_1.default.googleAnalytics('set', {
-                    dimension1: this.opts.title,
-                    dimension2: this.opts.parentTitle,
+                    dimension1: this.opts.videoTitle,
+                    dimension2: this.opts.videoParentTitle,
                     dimension3: userId,
                 });
                 config_1.default.googleAnalytics('event', {
                     category: 'video',
                     action: 'play',
-                    label: this.opts.title,
+                    label: this.opts.videoTitle,
                     nonInteraction: true,
                 });
             }
@@ -52,15 +52,15 @@ class PlayerAnalytics {
                 return;
             if (config_1.default.googleAnalytics) {
                 config_1.default.googleAnalytics('set', {
-                    dimension1: this.opts.title,
-                    dimension2: this.opts.parentTitle,
+                    dimension1: this.opts.videoTitle,
+                    dimension2: this.opts.videoParentTitle,
                     dimension3: userId,
                     metric1: 60,
                 });
                 config_1.default.googleAnalytics('event', {
                     category: 'video',
                     action: 'playing',
-                    label: `${this.opts.parentTitle}: ${this.opts.title}`,
+                    label: `${this.opts.videoParentTitle}: ${this.opts.videoTitle}`,
                     value: 60,
                     nonInteraction: true,
                 });

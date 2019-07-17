@@ -2,8 +2,8 @@ export interface IPlayerAnalyticsOpts {
     videoId: number;
     playerId: string;
     getCurrentTime?: Function;
-    title?: string;
-    parentTitle?: string;
+    videoTitle?: string;
+    videoParentTitle?: string;
 }
 export declare class PlayerAnalytics {
     private opts;
