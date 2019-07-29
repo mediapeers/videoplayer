@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "yarn tsc && cp src/*.scss dist/"
+    "build": "yarn tsc && cp src/*.scss dist/ && cp src/*.css dist/"
   },
   "author": "johannes-kostas goetzinger <goetzinger@mediapeers.com>",
   "license": "ISC",
