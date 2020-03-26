@@ -17,7 +17,7 @@ const player_1 = require("./player");
 class PlayerV8 extends player_1.Player {
     load() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield player_1.Player.loadBitmovin('8.9.0');
+            yield player_1.Player.loadBitmovin('8.31.0');
             const { playerId } = this.opts;
             const domElement = window.document.getElementById(playerId);
             const config = this.fullConfig();
