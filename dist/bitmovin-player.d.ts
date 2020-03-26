@@ -14,6 +14,10 @@ export interface IBitmovinPlayerProps {
     autoplay?: boolean;
     posterUrl?: string;
     render?: Function;
+    onPlay?: Function;
+    onPause?: Function;
+    onStop?: Function;
+    onError?: Function;
 }
 export declare const hasPropChanged: (prevProps: any, nextProps: any, propPath: any) => boolean;
 export default class extends React.PureComponent<IBitmovinPlayerProps, any> {

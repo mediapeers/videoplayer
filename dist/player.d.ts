@@ -5,6 +5,10 @@ export interface IPlayerConfigOpts {
     subtitles?: any[];
     autoplay?: boolean;
     posterUrl?: string | null;
+    onPlay?: Function;
+    onPause?: Function;
+    onStop?: Function;
+    onError?: Function;
 }
 export interface IPlayerOpts extends IPlayerConfigOpts, IPlayerAnalyticsOpts {
 }
@@ -28,9 +32,10 @@ export declare abstract class Player {
             autoplay: boolean;
         };
     };
-    protected onStop(): void;
-    protected onPlay(): void;
-    protected onError(): Promise<void>;
+    protected onStop: (...args: any[]) => void;
+    protected onPlay: (...args: any[]) => void;
+    protected onPause: (...args: any[]) => void;
+    protected onError: (...args: any[]) => Promise<void>;
     protected canPlayHls(): boolean;
     protected onSegmentPlayback(evt: any): void;
     protected buildDrmSource(): Promise<any>;

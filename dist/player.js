@@ -19,6 +19,40 @@ const player_analytics_1 = require("./player-analytics");
 class Player {
     constructor(opts) {
         this.escapedError = 0;
+        this.onStop = (...args) => {
+            if (this.opts.onStop)
+                this.opts.onStop(...args);
+            this.analytics.playbackStopped();
+        };
+        this.onPlay = (...args) => {
+            if (this.opts.onPlay)
+                this.opts.onPlay(...args);
+            this.analytics.playbackStarted();
+        };
+        this.onPause = (...args) => {
+            if (this.opts.onPause)
+                this.opts.onPause(...args);
+            this.analytics.playbackStopped();
+        };
+        this.onError = (...args) => __awaiter(this, void 0, void 0, function* () {
+            if (this.opts.onError)
+                this.opts.onError(...args);
+            this.analytics.playbackStopped();
+            if (this.escapedError > 5)
+                return;
+            this.escapedError++;
+            const time = (this.segmentData && lodash_1.toInteger(this.segmentData.playbackTime + this.segmentData.duration + 1)) || 0;
+            const volume = this.instance.getVolume();
+            const isMuted = this.instance.isMuted();
+            console.log('============================================================\n', `start playback at ${time} second(s) to skip corrupt segment \n`, '============================================================');
+            yield this.instance.destroy();
+            yield this.load();
+            this.instance.setVolume(volume);
+            if (isMuted)
+                this.instance.mute();
+            this.instance.play();
+            this.instance.seek(time);
+        });
         this.opts = opts;
         this.analytics = new player_analytics_1.PlayerAnalytics(Object.assign({ getCurrentTime: this.getCurrentTime.bind(this) }, opts));
     }
@@ -61,31 +95,6 @@ class Player {
                 autoplay: !!this.opts.autoplay,
             },
         };
-    }
-    onStop() {
-        this.analytics.playbackStopped();
-    }
-    onPlay() {
-        this.analytics.playbackStarted();
-    }
-    onError() {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.analytics.playbackStopped();
-            if (this.escapedError > 5)
-                return;
-            this.escapedError++;
-            const time = (this.segmentData && lodash_1.toInteger(this.segmentData.playbackTime + this.segmentData.duration + 1)) || 0;
-            const volume = this.instance.getVolume();
-            const isMuted = this.instance.isMuted();
-            console.log('============================================================\n', `start playback at ${time} second(s) to skip corrupt segment \n`, '============================================================');
-            yield this.instance.destroy();
-            yield this.load();
-            this.instance.setVolume(volume);
-            if (isMuted)
-                this.instance.mute();
-            this.instance.play();
-            this.instance.seek(time);
-        });
     }
     canPlayHls() {
         return (platform_1.default.os.family === 'iOS') || (platform_1.default.name === 'Safari');
