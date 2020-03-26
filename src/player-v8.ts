@@ -40,7 +40,7 @@ export class PlayerV8 extends Player {
         level: bitmovin.player.LogLevel.ERROR,
       },
       events: {
-        [bitmovin.player.PlayerEvent.Paused]: this.onStop.bind(this),
+        [bitmovin.player.PlayerEvent.Paused]: this.onPause.bind(this),
         [bitmovin.player.PlayerEvent.Play]: this.onPlay.bind(this),
         [bitmovin.player.PlayerEvent.PlaybackFinished]: this.onStop.bind(this),
         [bitmovin.player.PlayerEvent.SegmentPlayback]: this.onSegmentPlayback.bind(this),
