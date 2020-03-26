@@ -6,7 +6,7 @@ declare var bitmovin
 
 export class PlayerV8 extends Player {
   public async load() {
-    await Player.loadBitmovin('8.9.0')
+    await Player.loadBitmovin('8.31.0')
 
     const {playerId} = this.opts
 
