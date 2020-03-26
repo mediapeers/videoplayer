@@ -24,6 +24,10 @@ export interface IBitmovinPlayerProps {
   autoplay?: boolean
   posterUrl?: string
   render?: Function // TODO: remove in favour of children
+  onPlay?: Function
+  onPause?: Function
+  onStop?: Function
+  onError?: Function
 }
 
 export const hasPropChanged = (prevProps, nextProps, propPath): boolean => {

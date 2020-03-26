@@ -13,6 +13,10 @@ export interface IPlayerConfigOpts {
   subtitles?: any[]
   autoplay?: boolean
   posterUrl?: string | null
+  onPlay?: Function
+  onPause?: Function
+  onStop?: Function
+  onError?: Function
 }
 
 export interface IPlayerOpts extends IPlayerConfigOpts, IPlayerAnalyticsOpts {}
@@ -78,15 +82,23 @@ export abstract class Player {
     }
   }
 
-  protected onStop() {
+  protected onStop = (...args) => {
+    if (this.opts.onStop) this.opts.onStop(...args)
     this.analytics.playbackStopped()
   }
 
-  protected onPlay() {
+  protected onPlay = (...args) => {
+    if (this.opts.onPlay) this.opts.onPlay(...args)
     this.analytics.playbackStarted()
   }
 
-  protected async onError() {
+  protected onPause = (...args) => {
+    if (this.opts.onPause) this.opts.onPause(...args)
+    this.analytics.playbackStopped()
+  }
+
+  protected onError = async (...args) => {
+    if (this.opts.onError) this.opts.onError(...args)
     this.analytics.playbackStopped()
 
     if (this.escapedError > 5) return
